@@ -5,9 +5,9 @@ import { ADMIN_PAGES } from '@/config/pages/admin.config'
 import { DASHBOARD_PAGES } from '@/config/pages/dashboard.config'
 import { PREMIUM_PAGES } from '@/config/pages/premium.config'
 import { PUBLIC_PAGES } from '@/config/pages/public.config'
+import { LogoSvg } from '@/shared/components/LogoSvg'
 import Link from 'next/link'
 import React from 'react'
-import { LogoSvg } from '@shared/ui/LogoSvg'
 
 const pages = [
 	PUBLIC_PAGES.LOGIN,

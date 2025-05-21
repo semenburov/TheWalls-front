@@ -1,4 +1,7 @@
-import { UserRole, type TProtectUserData } from '@/types/auth.types'
+import {
+	UserRole,
+	type TProtectUserData,
+} from '@/features/auth/types/auth.types'
 
 export type TUserDataState = {
 	id: number
@@ -17,6 +20,6 @@ export const transformUserToState = (
 		isLoggedIn: true,
 		isAdmin: user.rights.includes(UserRole.ADMIN),
 		isManager: user.rights.includes(UserRole.MANAGER),
-		isPremium: user.rights.includes(UserRole.PREMIUM)
+		isPremium: user.rights.includes(UserRole.PREMIUM),
 	}
 }

@@ -1,4 +1,4 @@
-import { IUser } from './user.types'
+import { IUser } from '../../../types/user.types'
 
 // Почему ENUM именно так (7:16) - https://www.youtube.com/watch?v=XdhhCIIksPw
 export const AuthToken = {

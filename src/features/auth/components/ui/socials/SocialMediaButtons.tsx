@@ -1,6 +1,6 @@
 'use client'
 import { BACKEND_SOCIAL_AUTH_URL } from '@/constants'
-import { MiniLoader } from '@/shared/ui/MiniLoader'
+import { MiniLoader } from '@/shared/components/MiniLoader'
 import React, { useState } from 'react'
 import { FaGithub, FaGoogle } from 'react-icons/fa'
 import { twMerge } from 'tailwind-merge'

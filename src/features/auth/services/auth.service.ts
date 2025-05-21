@@ -1,5 +1,5 @@
 import { axiosClassic } from '@/api/axios'
-import { IFormData } from '@/types/auth.types'
+import { IFormData } from '@/features/auth/types/auth.types'
 import { IUser } from '@/types/user.types'
 import authTokenService from './auth-token.service'
 

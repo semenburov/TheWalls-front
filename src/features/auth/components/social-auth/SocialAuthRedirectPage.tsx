@@ -2,12 +2,12 @@
 
 import { PUBLIC_PAGES } from '@/config/pages/public.config'
 
-import { AuthToken } from '@/types/auth.types'
+import { AuthToken } from '@/features/auth/types/auth.types'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 import authTokenService from '@/features/auth/services/auth-token.service'
-import { MiniLoader } from '@/shared/ui/MiniLoader'
+import { MiniLoader } from '@/shared/components/MiniLoader'
 import SocialEmailForm from './SocialEmailForm'
 
 export function SocialAuthRedirectPage() {

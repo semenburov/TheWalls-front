@@ -4,7 +4,7 @@
 import { useProfile } from '@/features/profile/hooks/useProfile'
 import Link from 'next/link'
 import React from 'react'
-import { LogoSvg } from '../../../../shared/ui/LogoSvg'
+import { LogoSvg } from '../../../../shared/components/LogoSvg'
 import { ProfileMenu } from './ProfileMenu'
 
 export const Header: React.FC = () => {

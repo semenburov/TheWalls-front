@@ -1,6 +1,6 @@
 'use server'
 
-import { ITokenInside } from '@/types/auth.types'
+import { ITokenInside } from '@/features/auth/types/auth.types'
 import { transformUserToState } from '@/utils/transform-user-to-state'
 import * as jose from 'jose'
 

@@ -1,4 +1,4 @@
-import { AuthToken } from '@/types/auth.types'
+import { AuthToken } from '@/features/auth/types/auth.types'
 import Cookies from 'js-cookie'
 
 class AuthTokenService {
@@ -11,7 +11,7 @@ class AuthTokenService {
 		Cookies.set(AuthToken.ACCESS_TOKEN, accessToken, {
 			domain: 'localhost',
 			sameSite: 'strict',
-			expires: 1
+			expires: 1,
 		})
 	}
 

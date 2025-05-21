@@ -1,6 +1,6 @@
 // src/app/auth/AuthPage.tsx
-import { AuthForm } from './AuthForm'
-import { AuthPageWrapper } from './AuthPageWrapper'
+import { AuthWrapper } from '@/features/auth/components/AuthWrapper'
+import { AuthForm } from '../components/AuthForm'
 
 interface Props {
 	isLogin: boolean
@@ -15,8 +15,8 @@ interface Props {
  */
 export function AuthPage({ isLogin }: Props) {
 	return (
-		<AuthPageWrapper heading={isLogin ? '' : ''}>
+		<AuthWrapper heading={isLogin ? '' : ''}>
 			<AuthForm isLogin={isLogin} />
-		</AuthPageWrapper>
+		</AuthWrapper>
 	)
 }

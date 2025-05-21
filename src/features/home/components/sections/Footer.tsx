@@ -1,5 +1,5 @@
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6' // FaXTwitter — нова Twitter (X) іконка
-import { LogoSvg } from '../../../../shared/ui/LogoSvg'
+import { LogoSvg } from '../../../../shared/components/LogoSvg'
 export const Footer = () => (
 	<footer
 		className='

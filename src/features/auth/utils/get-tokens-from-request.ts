@@ -1,4 +1,4 @@
-import { AuthToken } from '@/types/auth.types'
+import { AuthToken } from '@/features/auth/types/auth.types'
 import { NextRequest } from 'next/server'
 import { getNewTokensByRefresh } from './get-new-tokens-by-refresh'
 

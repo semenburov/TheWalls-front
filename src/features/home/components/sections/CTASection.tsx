@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Button } from '../../../../shared/ui/Button'
+import { Button } from '../../../../shared/components/Button'
 
 export const CTASection = () => (
 	<motion.section

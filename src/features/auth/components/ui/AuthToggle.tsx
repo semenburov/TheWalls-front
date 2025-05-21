@@ -1,5 +1,6 @@
 // src/components/molecules/AuthToggle.tsx
 import Link from 'next/link'
+import { JSX } from 'react'
 
 /**
  * @typedef {Object} AuthToggleProps
@@ -14,7 +15,9 @@ export interface AuthToggleProps {
  * @param {AuthToggleProps} props
  * @returns {JSX.Element}
  */
-export const AuthToggle: React.FC<AuthToggleProps> = ({ isLogin }) => (
+export const AuthToggle: React.FC<AuthToggleProps> = ({
+	isLogin,
+}: AuthToggleProps): JSX.Element => (
 	<div className='text-center text-sm mt-6'>
 		{isLogin ? (
 			<>

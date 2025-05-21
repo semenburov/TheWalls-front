@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Button } from '../../../../shared/ui/Button'
-import { LogoSvg } from '../../../../shared/ui/LogoSvg'
+import { Button } from '../../../../shared/components/Button'
+import { LogoSvg } from '../../../../shared/components/LogoSvg'
 export const HeroSection = () => (
 	<section className='relative flex flex-col items-center justify-center min-h-[90vh] py-32 px-4 bg-transparent overflow-hidden font-sans'>
 		<motion.div

@@ -3,7 +3,7 @@
 'use client'
 import { Check } from 'lucide-react'
 import React from 'react'
-import { Button } from '../../../../shared/ui/Button'
+import { Button } from '../../../../shared/components/Button'
 
 const plans = [
 	{

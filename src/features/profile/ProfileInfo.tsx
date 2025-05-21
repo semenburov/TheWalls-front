@@ -1,7 +1,7 @@
 'use client'
 import { PUBLIC_PAGES } from '@/config/pages/public.config'
 import { useProfile } from '@/features/profile/hooks/useProfile'
-import { MiniLoader } from '@/shared/ui/MiniLoader'
+import { MiniLoader } from '@/shared/components/MiniLoader'
 import userService from '@features/auth/services/user.service'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'

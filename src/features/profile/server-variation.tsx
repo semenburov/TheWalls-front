@@ -1,5 +1,5 @@
 import { API_URL } from '@/constants'
-import { AuthToken } from '@/types/auth.types'
+import { AuthToken } from '@/features/auth/types/auth.types'
 import { IUser } from '@/types/user.types'
 
 import { cookies } from 'next/headers'
@@ -13,8 +13,8 @@ const fetchProfile = async () => {
 
 	return fetch(`${API_URL}/auth/profile`, {
 		headers: {
-			Authorization: `Bearer ${accessToken}`
-		}
+			Authorization: `Bearer ${accessToken}`,
+		},
 	}).then(res => res.json()) as Promise<IUser>
 }
 

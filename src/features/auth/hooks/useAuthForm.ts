@@ -2,7 +2,7 @@
 
 import { PUBLIC_PAGES } from '@/config/pages/public.config'
 import authService from '@/features/auth/services/auth.service'
-import { IFormData } from '@/types/auth.types'
+import { IFormData } from '@/features/auth/types/auth.types'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
