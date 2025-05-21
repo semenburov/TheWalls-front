@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-primary: var(--color-emerald-600);
+	--color-secondary: var(--color-rose-500);
+
+	--default-transition-duration: 400ms;
+	--default-transition-timing-function: ease-in-out;
+}
+
+html {
+	@apply bg-neutral-800 text-white;
+}
+
+body {
+	@apply font-sans text-base antialiased;
+	font-family: 'Inter', 'ui-sans-serif', 'system-ui', sans-serif;
+	/* font-size: 20px;
+	margin: 0 auto; */
+}
+
+input,
+button {
+	font-size: 16px;
+}
+
+h1 {
+	@apply text-3xl;
+}
+
+h2 {
+	@apply text-xl;
+}
