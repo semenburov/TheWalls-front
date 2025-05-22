@@ -1,20 +1,25 @@
-import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6' // FaXTwitter — нова Twitter (X) іконка
-import { LogoSvg } from '../../../../shared/components/LogoSvg'
+import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6' // Іконки соцмереж (Twitter/X, Github, LinkedIn, Discord)
+import { LogoSvg } from '../../../shared/components/LogoSvg' // SVG-логотип компанії
+
+/**
+ * Footer — компонент підвалу сайту.
+ * Містить логотип, соціальні іконки, навігаційні посилання та декоративний градієнт.
+ */
 export const Footer = () => (
 	<footer
 		className='
-    w-full relative z-10
-    bg-white/5
-    backdrop-blur-[8px]
-    border-t border-white/15
-    py-8 px-0 font-sans
-  '
+            w-full relative z-10
+            bg-white/5
+            backdrop-blur-[8px]
+            border-t border-white/15
+            py-8 px-0 font-sans
+        '
 	>
 		<div className='max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12'>
-			{/* Company/Logo/Social */}
+			{/* Блок компанії: логотип, назва, копірайт, соцмережі */}
 			<div className='flex flex-col gap-5'>
 				<div className='flex items-center gap-2'>
-					{/* Можеш поставити свою SVG/Logo замість emoji */}
+					{/* SVG-логотип компанії */}
 					<LogoSvg width={50} height={70} />
 					<span className='font-black text-2xl tracking-tight text-white'>
 						TheWalls Online
@@ -23,6 +28,7 @@ export const Footer = () => (
 				<div className='text-sm text-neutral-400'>
 					TheWalls Online, Inc, © {new Date().getFullYear()}
 				</div>
+				{/* Соціальні іконки з посиланнями */}
 				<div className='flex gap-4 mt-2'>
 					<a
 						href='https://linkedin.com/'
@@ -58,7 +64,7 @@ export const Footer = () => (
 					</a>
 				</div>
 			</div>
-			{/* Product */}
+			{/* Блок PRODUCT: посилання на функціонал/спільноту/зворотній зв'язок */}
 			<div>
 				<div className='text-white font-bold mb-3 tracking-wide text-sm'>
 					PRODUCT
@@ -90,7 +96,7 @@ export const Footer = () => (
 					</li>
 				</ul>
 			</div>
-			{/* Company */}
+			{/* Блок COMPANY: посилання на сторінки про компанію, вакансії, підтримку */}
 			<div>
 				<div className='text-white font-bold mb-3 tracking-wide text-sm'>
 					COMPANY
@@ -122,7 +128,7 @@ export const Footer = () => (
 					</li>
 				</ul>
 			</div>
-			{/* Legal */}
+			{/* Блок LEGAL: посилання на політики та умови */}
 			<div>
 				<div className='text-white font-bold mb-3 tracking-wide text-sm'>
 					LEGAL
@@ -155,7 +161,7 @@ export const Footer = () => (
 				</ul>
 			</div>
 		</div>
-		{/* Decorative gradient fade */}
+		{/* Декоративний градієнтний fade для плавного переходу у фон */}
 		<div
 			className='absolute left-0 right-0 bottom-0 h-16 pointer-events-none select-none'
 			style={{

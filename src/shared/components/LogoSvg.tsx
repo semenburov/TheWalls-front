@@ -1,6 +1,18 @@
 // src/atoms/LogoSvg.tsx
 import React from 'react'
 
+/**
+ * LogoSvg — SVG-логотип компанії TheWalls.
+ * Складається з градієнтних стін, основного тексту та слогану (опціонально).
+ *
+ * @param {object} props - Пропси компонента
+ * @param {number} [props.width=40] - Ширина SVG (за замовчуванням 40)
+ * @param {number} [props.height=44] - Висота SVG (за замовчуванням 44)
+ * @param {string} [props.className] - Додаткові класи Tailwind/стилі (опціонально)
+ * @param {boolean} [props.isCompanyName] - Чи показувати назву компанії під іконкою
+ * @param {boolean} [props.isSlogan] - Чи показувати слоган під назвою
+ * @returns {JSX.Element} - SVG-логотип
+ */
 export const LogoSvg: React.FC<{
 	width?: number
 	height?: number
@@ -8,11 +20,11 @@ export const LogoSvg: React.FC<{
 	isCompanyName?: boolean
 	isSlogan?: boolean
 }> = ({
-	width = 40,
-	height = 44,
-	className = '',
-	isCompanyName = false,
-	isSlogan = false,
+	width = 40, // Ширина SVG за замовчуванням
+	height = 44, // Висота SVG за замовчуванням
+	className = '', // Додаткові CSS-класи
+	isCompanyName = false, // Показувати назву компанії (THEWALLS)
+	isSlogan = false, // Показувати слоган (MODERN SOLUTIONS)
 }) => (
 	<svg
 		width={width}
@@ -22,12 +34,13 @@ export const LogoSvg: React.FC<{
 		xmlns='http://www.w3.org/2000/svg'
 		className={className}
 		style={{
-			display: 'inline-block',
-			verticalAlign: 'middle',
-			alignSelf: 'center',
+			display: 'inline-block', // Відображення як інлайн-блок
+			verticalAlign: 'middle', // Вертикальне вирівнювання
+			alignSelf: 'center', // Центрування в flex-контейнері
 		}}
 	>
 		<defs>
+			{/* Градієнт для стін логотипу */}
 			<linearGradient
 				id='goldGrad'
 				x1='0'
@@ -36,11 +49,12 @@ export const LogoSvg: React.FC<{
 				y2='200'
 				gradientUnits='userSpaceOnUse'
 			>
-				<stop stopColor='#ecd38b' />
-				<stop offset='1' stopColor='#634e22' />
+				<stop stopColor='#ecd38b' /> {/* Початок градієнта (золото) */}
+				<stop offset='1' stopColor='#634e22' />{' '}
+				{/* Кінець градієнта (темно-золотий) */}
 			</linearGradient>
 		</defs>
-		//Вертикальний прямокутник із заокругленням і розривом знизу
+		{/* Вертикальний прямокутник із заокругленням і розривом знизу */}
 		<path
 			d='M36,18
        Q12,18 12,44
@@ -57,11 +71,11 @@ export const LogoSvg: React.FC<{
 			fill='none'
 			strokeLinecap='round'
 		/>
-		//Ліва вертикальна стіна
+		{/* Ліва вертикальна стіна */}
 		<rect x='65' y='98' width='14' height='80' rx='7' fill='url(#goldGrad)' />
-		//Права вертикальна стіна (вища)
+		{/* Права вертикальна стіна (вища) */}
 		<rect x='100' y='66' width='14' height='112' rx='7' fill='url(#goldGrad)' />
-		// Основний текст
+		{/* Основний текст */}
 		{isCompanyName && (
 			<text
 				x='90'

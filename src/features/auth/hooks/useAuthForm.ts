@@ -1,208 +1,123 @@
-'use client'
-
-import { PUBLIC_PAGES } from '@/config/pages/public.config'
-import authService from '@/features/auth/services/auth.service'
-import { IFormData } from '@/features/auth/types/auth.types'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
+//path @/features/auth/hooks/useAuthForm.ts
+// Імпорт React-хуків, роутера, form-хука, кастомної мутації, сервісу авторизації та утиліт для пароля
+import { PasswordCheck } from '@/features/auth/types/passwordRule.type' // Тип для одного правила пароля
+import { useBaseMutation } from '@/shared/hooks/useBaseMutation'
+import {
+	getPasswordChecks, // Функція для отримання масиву правил для пароля (checklist)
+	validatePassword, // Функція для валідації пароля (повертає текст помилки або null)
+} from '@/shared/utils/password.rules'
+import authService from '@features/auth/services/auth.service'
 import { useRouter } from 'next/navigation'
-import { useRef, useState, useTransition } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
-/**
- * @typedef {Object} AuthFormValues
- * @property {string} email
- * @property {string} password
- * @property {string} [confirm] - тільки для реєстрації
- */
-export interface AuthFormValues {
-	email: string
-	password: string
-	confirm?: string
+import { useRef } from 'react'
+import { useForm } from 'react-hook-form'
+
+// Тип для значень форми аутентифікації
+type AuthFormValues = {
+	email: string // Email користувача
+	password: string // Пароль користувача
+	confirm?: string // Підтвердження пароля (тільки для реєстрації)
 }
 
 /**
- * @typedef {Object} PasswordRule
- * @property {string} key
- * @property {string} label
- * @property {(value: string) => boolean} check
- */
-interface PasswordRule {
-	key: string
-	label: string
-	check: (v: string) => boolean
-}
-
-/**
- * @typedef {Object} PasswordCheck
- * @property {string} key
- * @property {string} label
- * @property {boolean} checked
- */
-export interface PasswordCheck {
-	key: string
-	label: string
-	checked: boolean
-}
-
-const passwordRules: PasswordRule[] = [
-	{
-		key: 'lower',
-		label: 'Contains at least 1 lowercase letter',
-		check: v => /[a-z]/.test(v),
-	},
-	{
-		key: 'upper',
-		label: 'Contains at least 1 uppercase letter',
-		check: v => /[A-Z]/.test(v),
-	},
-	{
-		key: 'number',
-		label: 'Contains at least 1 number',
-		check: v => /\d/.test(v),
-	},
-	{
-		key: 'special',
-		label: 'Contains at least 1 special character',
-		check: v => /[^A-Za-z0-9]/.test(v),
-	},
-	{
-		key: 'length',
-		label: 'Is at least 8 characters long',
-		check: v => v.length >= 8,
-	},
-]
-
-/**
- * Кастомний хук для керування формою аутентифікації
- * @param {Object} params
- * @param {boolean} params.isLogin - Чи це логін (true), чи реєстрація (false)
+ * Кастомний хук для логіки форми логіну/реєстрації.
+ * Інкапсулює роботу з react-hook-form, перевірку пароля, інтеграцію з reCAPTCHA, сабміт та мутацію.
+ *
+ * @param {object} params
+ * @param {boolean} params.isLogin - Чи це форма логіну (true) чи реєстрації (false)
+ * @returns {object} - Методи та стани для роботи з формою
  */
 export function useAuthForm({ isLogin }: { isLogin: boolean }) {
-	const { register, handleSubmit, reset } = useForm<IFormData>()
+	const router = useRouter() // Хук для навігації (можна використати для редіректу після успіху)
+	const recaptchaRef = useRef<any>(null) // Референс для роботи з Google reCAPTCHA
 
-	const router = useRouter()
-	const [isPending, startTransition] = useTransition()
-
-	const recaptchaRef = useRef<ReCAPTCHA>(null)
-
-	const { mutate: mutateLogin, isPending: isLoginPending } = useMutation({
-		mutationKey: ['login'],
-		mutationFn: (data: IFormData) =>
-			authService.main('login', data, recaptchaRef.current?.getValue()),
-		onSuccess() {
-			startTransition(() => {
-				reset()
-				router.push(PUBLIC_PAGES.MAIN + '?success=1')
-			})
-		},
-		onError(error) {
-			if (axios.isAxiosError(error)) {
-				toast.error(error.response?.data?.message)
-			}
+	// 1. Ініціалізація форми через react-hook-form
+	const {
+		register, // Функція для реєстрації полів у формі
+		handleSubmit, // Обгортка для сабміту (викликає onSubmit)
+		formState: { errors, isSubmitting }, // Об'єкт з помилками та станом сабміту
+		setError, // Функція для ручного встановлення помилки
+		clearErrors, // Функція для очищення помилок
+		watch, // Функція для відстеження значень полів у реальному часі
+	} = useForm<AuthFormValues>({
+		mode: 'onChange', // Валідація на кожну зміну
+		defaultValues: {
+			email: '',
+			password: '',
+			confirm: '',
 		},
 	})
 
-	const { mutate: mutateRegister, isPending: isRegisterPending } = useMutation({
-		mutationKey: ['register'],
-		mutationFn: (data: IFormData) =>
-			authService.main('register', data, recaptchaRef.current?.getValue()),
-		onSuccess() {
-			startTransition(() => {
-				reset()
-				//router.push(PUBLIC_PAGES.PLANS) //REDIRECT AFTER REGISTER
-				router.push(PUBLIC_PAGES.MAIN + '?success=1')
-			})
-		},
-		onError(error) {
-			if (axios.isAxiosError(error)) {
-				toast.error(error.response?.data?.message)
-			}
-		},
-	})
-
-	const onSubmit: SubmitHandler<IFormData> = data => {
-		const token = recaptchaRef.current?.getValue()
-
-		if (!token) {
-			toast.error('Please complete the captcha')
-			return
-		}
-
-		if (isLogin) {
-			mutateLogin(data)
-		} else {
-			mutateRegister(data)
-		}
-	}
-
-	const isSubmitting = isPending || isLoginPending || isRegisterPending
-
-	const [values, setValues] = useState<AuthFormValues>({
-		email: '',
-		password: '',
-		confirm: '',
-	})
-	const [errors, setErrors] = useState<Partial<AuthFormValues>>({})
-	//const [isSubmitting, setIsSubmitting] = useState(false)
-
+	// 2. Для password checklist (тільки для реєстрації)
+	const password = watch('password') || '' // Поточне значення пароля
 	const passwordChecks: PasswordCheck[] = !isLogin
-		? passwordRules.map(rule => ({
-				key: rule.key,
-				label: rule.label,
-				checked: rule.check(values.password || ''),
-		  }))
+		? getPasswordChecks(password) // Масив правил для пароля (checklist)
 		: []
 
-	const validate = (values: AuthFormValues) => {
-		const errs: Partial<AuthFormValues> = {}
-		if (!values.email) errs.email = 'Email is required'
-		// Add more validation as needed
-		if (!values.password) errs.password = 'Password is required'
+	// 3. Мутація для логіну/реєстрації (через кастомний useBaseMutation)
+	const { mutate: authMutate, isLoading } = useBaseMutation(
+		(data: {
+			email: string
+			password: string
+			recaptchaToken?: string | null
+		}) =>
+			authService.main(
+				isLogin ? 'login' : 'register', // Вибір ендпоінта
+				data,
+				data.recaptchaToken
+			),
+		{
+			mutationKey: [isLogin ? 'login' : 'register'], // Ключ для кешу/ідентифікації мутації
+			defaultErrorMsg: isLogin
+				? 'Помилка авторизації'
+				: 'Помилка при реєстрації',
+			successRedirect: '/', // Куди редіректити після успіху
+		}
+	)
+
+	// 4. Сабміт форми (логіка для логіну/реєстрації)
+	const onSubmit = async (data: AuthFormValues) => {
+		clearErrors() // Очищаємо попередні помилки
 		if (!isLogin) {
-			if (!values.confirm) errs.confirm = 'Confirm your password'
-			if (values.password !== values.confirm)
-				errs.confirm = 'Passwords do not match'
-			// Password strength
-			for (const rule of passwordRules) {
-				if (!rule.check(values.password)) {
-					errs.password = 'Password is not strong enough'
-					break
-				}
+			const passwordError = validatePassword(data.password) // Перевірка пароля по правилах
+			if (passwordError) {
+				setError('password', { message: passwordError }) // Встановлюємо помилку для пароля
+				return
+			}
+			if (data.password !== data.confirm) {
+				setError('confirm', { message: 'Паролі не співпадають' }) // Помилка, якщо паролі не співпадають
+				return
 			}
 		}
-		return errs
+
+		// Отримуємо токен з reCAPTCHA (якщо використовується)
+		const recaptchaToken = recaptchaRef.current?.getValue() || null
+
+		// Викликаємо мутацію (логін/реєстрація)
+		authMutate(
+			{ email: data.email, password: data.password, recaptchaToken },
+			{
+				onSettled: () => {
+					// Можна додати reset, clear, тощо (опціонально)
+				},
+			}
+		)
 	}
 
+	// 5. Додатковий хендлер для onChange (наприклад, для підсвічування checklist)
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setValues(v => ({ ...v, [e.target.name]: e.target.value }))
+		const field = e.target.name as keyof AuthFormValues
+		const value = e.target.value
+		// Можна додати додаткову логіку для live-перевірки
 	}
 
-	// const handleSubmit = async (e: React.FormEvent) => {
-	// 	e.preventDefault()
-	// 	setIsSubmitting(true)
-	// 	const errs = validate(values)
-	// 	setErrors(errs)
-	// 	if (Object.keys(errs).length === 0) {
-	// 		// TODO: handle API logic here
-	// 		// Example: await apiAuth(values)
-	// 		setIsSubmitting(false)
-	// 	} else {
-	// 		setIsSubmitting(false)
-	// 	}
-	// }
-
+	// 6. Повертаємо всі необхідні методи та стани для використання у формі
 	return {
-		register,
-		recaptchaRef,
-		values,
-		//isLoading,
-		onSubmit,
-		errors,
-		handleChange,
-		handleSubmit,
-		isSubmitting,
-		passwordChecks,
+		register, // Для підключення інпутів до форми
+		handleSubmit, // Для обгортки сабміту
+		errors, // Об'єкт з помилками
+		isSubmitting: isSubmitting || isLoading, // Стан сабміту (з урахуванням мутації)
+		onSubmit, // Обробник сабміту
+		recaptchaRef, // Реф для reCAPTCHA
+		passwordChecks, // Масив правил для checklist (тільки для реєстрації)
 	}
 }

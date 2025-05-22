@@ -1,29 +1,36 @@
 {
 	"compilerOptions": {
-		"target": "ES2017",
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"allowJs": true,
-		"skipLibCheck": true,
-		"strict": true,
-		"noEmit": true,
-		"esModuleInterop": true,
-		"module": "esnext",
-		"moduleResolution": "bundler",
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"jsx": "preserve",
-		"incremental": true,
+		"target": "ES2017", // Яка версія JS буде згенерована (синтаксис і можливості)
+		"lib": ["dom", "dom.iterable", "esnext"], // Які типи бібліотек підключати (DOM, сучасний JS)
+		"allowJs": true, // Дозволяє імпортувати .js файли у TypeScript-проєкті
+		"skipLibCheck": true, // Пропускати перевірку типів у node_modules (швидше збірка)
+		"strict": true, // Вмикає всі строгі перевірки типів (рекомендовано для безпеки)
+		"noEmit": true, // Не генерувати JS-файли при компіляції (тільки перевірка типів)
+		"esModuleInterop": true, // Дозволяє імпортувати CommonJS-модулі як ES6 (import x from '...')
+		"module": "esnext", // Який модульний синтаксис використовувати (ESNext — сучасний)
+		"moduleResolution": "bundler", // Як шукати модулі (bundler — для Next.js/webpack)
+		"resolveJsonModule": true, // Дозволяє імпортувати .json файли як модулі
+		"isolatedModules": true, // Кожен файл компілюється окремо (для сумісності з Babel/Next.js)
+		"jsx": "preserve", // Не трансформувати JSX (Next.js сам це робить)
+		"incremental": true, // Прискорює перевірку типів за рахунок кешу
 		"plugins": [
 			{
-				"name": "next"
+				"name": "next" // Плагін для покращення роботи з Next.js (типи, автодоповнення)
 			}
 		],
 		"paths": {
-			"@/*": ["./src/*"],
-			"@features/*": ["./src/features/*"],
-			"@shared/*": ["./src/shared/*"]
+			"@/*": ["./src/*"], // Шорткат для імпорту з src (import x from '@/...')
+			"@features/*": ["./src/features/*"], // Шорткат для імпорту з features
+			"@shared/*": ["./src/shared/*"] // Шорткат для імпорту з shared
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-	"exclude": ["node_modules"]
+	"include": [
+		"next-env.d.ts", // Типи, які додає Next.js
+		"**/*.ts", // Всі TypeScript-файли
+		"**/*.tsx", // Всі TSX-файли (React)
+		".next/types/**/*.ts" // Типи, які генерує Next.js під час білду
+	],
+	"exclude": [
+		"node_modules" // Не перевіряти типи у node_modules
+	]
 }

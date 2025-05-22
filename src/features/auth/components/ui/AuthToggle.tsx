@@ -4,22 +4,25 @@ import { JSX } from 'react'
 
 /**
  * @typedef {Object} AuthToggleProps
- * @property {boolean} isLogin - Чи це сторінка логіну
+ * @property {boolean} isLogin - Чи це сторінка логіну (true) або реєстрації (false)
  */
 export interface AuthToggleProps {
-	isLogin: boolean
+	isLogin: boolean // Вказує, чи зараз відображається форма логіну
 }
 
 /**
- * Компонент-перемикач між логіном і реєстрацією
- * @param {AuthToggleProps} props
- * @returns {JSX.Element}
+ * Компонент-перемикач між логіном і реєстрацією.
+ * В залежності від isLogin показує відповідний текст і посилання.
+ *
+ * @param {AuthToggleProps} props - Пропси компонента
+ * @returns {JSX.Element} - React-компонент
  */
 export const AuthToggle: React.FC<AuthToggleProps> = ({
 	isLogin,
 }: AuthToggleProps): JSX.Element => (
 	<div className='text-center text-sm mt-6'>
 		{isLogin ? (
+			// Якщо це сторінка логіну — пропонуємо перейти на реєстрацію
 			<>
 				<span className='text-neutral-400'>Don't have an account?</span>
 				<Link
@@ -30,6 +33,7 @@ export const AuthToggle: React.FC<AuthToggleProps> = ({
 				</Link>
 			</>
 		) : (
+			// Якщо це сторінка реєстрації — пропонуємо перейти на логін
 			<>
 				<span className='text-neutral-400'>Already have an account?</span>
 				<Link
