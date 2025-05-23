@@ -1,7 +1,7 @@
 // src/features/society/onboarding/components/CreateSocietyForm.tsx
-
+'use client'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { Input } from '@shared/components/Input'
 import { Button } from '@shared/components/Button'
 import { useCreateSociety } from '../hooks/useCreateSociety'

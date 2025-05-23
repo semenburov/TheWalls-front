@@ -1,8 +1,8 @@
 // src/features/society/onboarding/pages/OnboardingPage.tsx
-
+'use client'
 import { Card } from '@shared/components/Card'
 import { Button } from '@shared/components/Button'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 export default function OnboardingPage() {
 	const router = useRouter()

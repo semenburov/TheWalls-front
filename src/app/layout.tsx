@@ -1,6 +1,5 @@
 'use client' // Директива Next.js: компонент рендериться лише на клієнті
 
-import { Metadata } from 'next' // Тип для SEO-метаданих сторінки
 import { AppShell } from './AppShell' // Головна обгортка для макету сторінки (хедер, футер, сайдбар)
 import './globals.css' // Глобальні CSS-стилі для всього застосунку
 import { Providers } from './Providers' // Провайдери контексту (наприклад, для теми, авторизації, React Query тощо)
@@ -9,10 +8,10 @@ import { Providers } from './Providers' // Провайдери контекст
  * Об'єкт метаданих для всієї програми (SEO, заголовок, опис)
  * Використовується Next.js для генерації <head>
  */
-export const metadata: Metadata = {
-	title: 'TheWalls online', // Заголовок сторінки (title)
-	description: 'TheWalls online', // Опис сторінки (description)
-}
+// export const metadata: Metadata = {
+// 	title: 'TheWalls online', // Заголовок сторінки (title)
+// 	description: 'TheWalls online', // Опис сторінки (description)
+// }
 
 /**
  * Головний layout-компонент для всього застосунку.
@@ -28,7 +27,6 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='uk'>
-			{' '}
 			{/* Встановлює мову документа (українська) */}
 			<head>
 				{/* Підключення Google Fonts для шрифтів (Inter, JetBrains Mono, підтримка кирилиці) */}
