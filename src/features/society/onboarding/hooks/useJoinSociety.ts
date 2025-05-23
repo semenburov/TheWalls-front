@@ -3,10 +3,11 @@
 import { useBaseMutation } from '@shared/hooks/useBaseMutation'
 import { useApiErrorHandler } from '@shared/hooks/useApiErrorHandler'
 import { OnboardingService } from '../services/onboarding.service'
+import { JoinSocietyDto, SocietyEntity } from '../types/society.types'
 
 export function useJoinSociety() {
 	const errorHandler = useApiErrorHandler()
-	return useBaseMutation<{ token: string }, any>(
+	return useBaseMutation<SocietyEntity, JoinSocietyDto>(
 		OnboardingService.joinSociety,
 		{
 			onError: errorHandler,

@@ -15,3 +15,7 @@ export interface SocietyEntity {
 	createdAt: string
 	updatedAt: string
 }
+
+export interface JoinSocietyDto {
+	token: string
+}

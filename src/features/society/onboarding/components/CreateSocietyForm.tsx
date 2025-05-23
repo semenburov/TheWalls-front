@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { Input } from '@shared/components/Input'
 import { Button } from '@shared/components/Button'
 import { useCreateSociety } from '../hooks/useCreateSociety'
+import { CreateSocietyDto } from '../types/society.types'
 
 export function CreateSocietyForm() {
 	const router = useRouter()
@@ -15,12 +16,9 @@ export function CreateSocietyForm() {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
-		await mutateAsync(
-			{ name, type, address },
-			{
-				onSuccess: () => router.replace('/dashboard'),
-			}
-		)
+		await mutateAsync({ name, type, address } as CreateSocietyDto, {
+			onSuccess: () => router.replace('/dashboard'),
+		})
 	}
 
 	return (

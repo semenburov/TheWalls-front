@@ -7,7 +7,7 @@ import { CreateSocietyDto, SocietyEntity } from '../types/society.types'
 
 export function useCreateSociety() {
 	const errorHandler = useApiErrorHandler()
-	return useBaseMutation<CreateSocietyDto, SocietyEntity>(
+	return useBaseMutation<SocietyEntity, CreateSocietyDto>(
 		OnboardingService.createSociety,
 		{
 			onError: errorHandler,
