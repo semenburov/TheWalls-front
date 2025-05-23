@@ -1,16 +1,17 @@
 // src/features/society/onboarding/services/onboarding.service.ts
 
-import { CreateSocietyDto, SocietyEntity } from '../types/society.types'
 import { instance } from '@/api/axios' // Імпорт інстансу axios для роботи з API
-
+import { CreateSocietyDto, SocietyEntity } from '../types/society.types'
+import { API_URL } from '@/constants' // Імпорт базової адреси API
 export class OnboardingService {
 	static async createSociety(data: CreateSocietyDto): Promise<SocietyEntity> {
-		const response = await instance.post('/api/societies', data)
+		console.log('OnboardingService:', instance.defaults.baseURL)
+		const response = await instance.post(`${API_URL}/societies`, data)
 		return response.data
 	}
 
 	static async joinSociety(data: { token: string }): Promise<any> {
-		const response = await instance.post('/api/users/accept-invite', data)
+		const response = await instance.post(`${API_URL}/users/accept-invite`, data)
 		return response.data
 	}
 }

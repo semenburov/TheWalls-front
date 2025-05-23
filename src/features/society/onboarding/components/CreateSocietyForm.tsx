@@ -17,7 +17,7 @@ export function CreateSocietyForm() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
 		await mutateAsync({ name, type, address } as CreateSocietyDto, {
-			onSuccess: () => router.replace('/dashboard'),
+			onSuccess: () => router.replace('/main'),
 		})
 	}
 

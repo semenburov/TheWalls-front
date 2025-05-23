@@ -5,18 +5,24 @@ import { LogoSvg } from '@/shared/components/LogoSvg'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { sidebarItems } from '@/shared/config/sidebarItems'
-import { useProfile } from '@features/profile/hooks/useProfile' // Шлях змінюй згідно з реальним шляхом у твоєму проекті
+import { useProfile } from '@features/profile/hooks/useProfile'
 import clsx from 'clsx'
+import { useEffect } from 'react'
 
 export const Sidebar: React.FC<{ children?: React.ReactNode }> = ({
 	children,
 }) => {
 	const pathname = usePathname()
-	const { data: profile } = useProfile()
+	const { user, isLoading, fetchProfile } = useProfile()
 
-	// В profile має бути масив societies та масив roles
-	const societies = profile?.societies || []
-	const roles = profile?.roles || []
+	useEffect(() => {
+		// Автоматично отримуємо профіль при монтуванні компонента
+		fetchProfile()
+	}, [fetchProfile])
+
+	// В user має бути масив societies та масив roles
+	const societies = user?.societies || []
+	const roles = user?.roles || []
 
 	const itemsToShow = sidebarItems.filter(item => {
 		if (item.hidden && societies.length > 0) return false
