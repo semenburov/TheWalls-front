@@ -13,16 +13,16 @@ export const Sidebar: React.FC<{ children?: React.ReactNode }> = ({
 	children,
 }) => {
 	const pathname = usePathname()
-	const { user, isLoading, fetchProfile } = useProfile()
+	const { user, isLoading, refetch } = useProfile()
 
 	useEffect(() => {
 		// Автоматично отримуємо профіль при монтуванні компонента
-		fetchProfile({})
-	}, [fetchProfile])
+		refetch({})
+	}, [refetch])
 
 	// В user має бути масив societies та масив roles
-	const societies = user?.data?.societies || []
-	const roles = user?.data?.roles || []
+	const societies = user?.societies || []
+	const roles = user?.roles || []
 
 	const itemsToShow = sidebarItems.filter(item => {
 		if (item.hidden && societies.length > 0) return false

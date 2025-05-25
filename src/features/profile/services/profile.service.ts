@@ -13,7 +13,7 @@ class UserProfileService {
 	 * @returns {Promise<AxiosResponse<IUserProfile>>} - Дані профілю користувача
 	 */
 	async getProfile() {
-		return instance.get<IUserProfile>('/api/users/me')
+		return instance.get<IUserProfile>('/users/profile')
 	}
 }
 

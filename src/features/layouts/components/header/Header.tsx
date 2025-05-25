@@ -13,7 +13,10 @@ import { ProfileMenu } from './ProfileMenu' // Дропдаун-меню про�
  * Має фіксоване позиціонування, напівпрозорий фон, блюр, тінь і декоративний border.
  */
 export const Header: React.FC = () => {
-	const { isLoading, refetch, user } = useProfile() // Отримання стану профілю (isLoading, user, refetch)
+	const { isLoading, refetch, user, error } = useProfile() // Отримання стану профілю (isLoading, user, refetch)
+
+	console.log('Header:user', user) // Логування профілю для налагодження
+	console.log('Header:error', error) // Логування профілю для налагодження
 
 	if (isLoading) {
 		// Показуємо лоадер, поки профіль вантажиться (уникаємо hydration-багу)
@@ -59,7 +62,7 @@ export const Header: React.FC = () => {
 					{false ? (
 						// (Опціонально) Skeleton/Loader для кнопок, якщо потрібно
 						<div className='w-8 h-8 rounded-full bg-neutral-700 animate-pulse' />
-					) : !user.email ? (
+					) : !user?.email ? (
 						// Якщо користувач неавторизований — показати кнопки логіну/реєстрації
 						<>
 							<Link
