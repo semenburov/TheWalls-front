@@ -6,6 +6,7 @@ export interface IUserProfile {
 	societies: {
 		id: string
 		name: string
+		role: string // 'MANAGER', 'ADMIN', 'USER'
 	}[]
 	// Додай інші потрібні поля, які повертає бекенд
 }

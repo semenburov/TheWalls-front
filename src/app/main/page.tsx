@@ -6,8 +6,8 @@ import { useEffect } from 'react'
 export default function MainPage() {
 	const { user, isLoading } = useProfile()
 	const router = useRouter()
+	const searchParams = useSearchParams() // <-- перенесено перед будь-якими return
 
-	// Якщо не авторизований — редірект на логін
 	useEffect(() => {
 		if (!isLoading && !user?.email) {
 			router.replace('/auth/login')
@@ -15,17 +15,15 @@ export default function MainPage() {
 	}, [isLoading, user, router])
 
 	if (isLoading || !user?.email) {
-		// Скелетон або нічого (бо зараз або вантажиться, або редірект)
 		return (
 			<div className='w-full h-screen flex items-center justify-center bg-gradient-to-br from-[#122155] via-[#101d40] to-[#040714]'>
 				<div className='animate-spin rounded-full h-16 w-16 border-t-4 border-cyan-400 border-opacity-60'></div>
 			</div>
 		)
 	}
-	const searchParams = useSearchParams()
+
 	const success = searchParams?.get('success') === '1'
 
-	// Твій контент для авторизованого користувача
 	return (
 		<>
 			<div className='max-w-3xl mx-auto pt-10'>

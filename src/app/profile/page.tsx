@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ProfileInfo } from '../../features/profile/ProfileInfo'
+import { ProfileInfo } from '@features/profile/ProfileInfo'
 
 export const metadata: Metadata = {
 	title: 'Profile',

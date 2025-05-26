@@ -26,11 +26,12 @@ export function ProfileInfo() {
 		mutationKey: ['logout'], // Ключ мутації
 		mutationFn: () => userService.logout(), // Виклик API для логауту
 		onSuccess() {
+			startTransition(() => {
+				router.push(PUBLIC_PAGES.AUTH) // Редірект на сторінку тарифів після логауту
+			})
 			refetch() // Оновити профіль (скинути user)
 			queryClient.setQueryData(['profile'], null) // Очистити кеш профілю
-			startTransition(() => {
-				router.push(PUBLIC_PAGES.PLANS) // Редірект на сторінку тарифів після логауту
-			})
+
 			// setTimeout(() => window.location.reload(), 100) // (Опціонально) форс-оновлення сторінки
 		},
 	})
@@ -48,17 +49,17 @@ export function ProfileInfo() {
 	return (
 		<div className='mt-10 px-8'>
 			<RxAvatar size={64} /> {/* Іконка профілю */}
-			<h2 className='text-2xl font-bold'>Hi, {user.name || 'Anonym'}</h2>
+			<h2 className='text-2xl font-bold'>Вітаю, {user.name || 'Anonym'}</h2>
 			<br />
 			<p className='text-lg'>
 				Ваш email: {user.email}{' '}
-				<i>
+				{/* <i>
 					({user.verificationToken ? 'Requires email verification' : 'Verified'}
 					)
-				</i>
+				</i> */}
 			</p>
 			<br />
-			<p>Rights: {user.rights?.join(', ')}</p>{' '}
+			<p>Ваш доступ: {user.roles?.join(', ')}</p> <br />
 			{/* Відображення ролей/прав користувача */}
 			<br />
 			<button

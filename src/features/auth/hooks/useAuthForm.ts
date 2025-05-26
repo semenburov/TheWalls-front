@@ -70,7 +70,7 @@ export function useAuthForm({ isLogin }: { isLogin: boolean }) {
 			defaultErrorMsg: isLogin
 				? 'Помилка авторизації'
 				: 'Помилка при реєстрації',
-			successRedirect: '/', // Куди редіректити після успіху
+			successRedirect: '/society/onboarding', // Куди редіректити після успіху
 		}
 	)
 
