@@ -1,15 +1,21 @@
 // src/features/society/onboarding/types/society.types.ts
-
+export type SocietyType = 'HOUSE' | 'GARDEN' | 'GARAGE'
 export interface CreateSocietyDto {
 	name: string
-	type: string
+	email: string
+	phone?: string
+	type: SocietyType
+	description?: string
 	address?: string
 }
 
 export interface SocietyEntity {
-	id: string
+	id: number
 	name: string
-	type: string
+	email: string
+	phone?: string
+	type: SocietyType
+	description?: string
 	address?: string
 	managerId: string
 	createdAt: string

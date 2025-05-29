@@ -1,4 +1,4 @@
-@reference "../../app/globals.css";
+@reference "../../../app/globals.css";
 
 .input-field {
 	@apply w-full px-3 py-2 border border-zinc-700/60 rounded focus:outline-none focus:border-primary bg-transparent text-white transition-colors mt-1;

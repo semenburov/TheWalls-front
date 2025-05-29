@@ -5,7 +5,6 @@ import { CreateSocietyDto, SocietyEntity } from '../types/society.types'
 import { API_URL } from '@/constants' // Імпорт базової адреси API
 export class OnboardingService {
 	static async createSociety(data: CreateSocietyDto): Promise<SocietyEntity> {
-		console.log('OnboardingService:', instance.defaults.baseURL)
 		const response = await instance.post(`${API_URL}/societies`, data)
 		return response.data
 	}

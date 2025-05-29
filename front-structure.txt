@@ -1,0 +1,305 @@
+¦   .DS_Store
+¦   .env
+¦   .gitignore
+¦   bun.lockb
+¦   front-structure.txt
+¦   next-env.d.ts
+¦   next.config.ts
+¦   package.json
+¦   postcss.config.mjs
+¦   README.md
+¦   tailwind.config.js
+¦   tsconfig.json
+¦   yarn.lock
+¦
++---public
+¦       dark-loader.svg
+¦       loader.svg
+¦       logo.svg
+¦
+L---src
+    ¦   constants.ts
+    ¦   middleware.ts
+    ¦
+    +---api
+    ¦       api.helper.ts
+    ¦       axios.ts
+    ¦
+    +---app
+    ¦   ¦   AppShell.tsx
+    ¦   ¦   favicon.ico
+    ¦   ¦   globals.css
+    ¦   ¦   layout.tsx
+    ¦   ¦   page.tsx
+    ¦   ¦   Providers.tsx
+    ¦   ¦
+    ¦   +---admin
+    ¦   ¦       page.tsx
+    ¦   ¦
+    ¦   +---auth
+    ¦   ¦   +---login
+    ¦   ¦   ¦       page.tsx
+    ¦   ¦   ¦
+    ¦   ¦   L---register
+    ¦   ¦           page.tsx
+    ¦   ¦
+    ¦   +---dashboard
+    ¦   ¦       page.tsx
+    ¦   ¦
+    ¦   +---main
+    ¦   ¦       page.tsx
+    ¦   ¦
+    ¦   +---manager
+    ¦   ¦       page.tsx
+    ¦   ¦
+    ¦   +---plans
+    ¦   ¦       page.tsx
+    ¦   ¦
+    ¦   +---premium
+    ¦   ¦       page.tsx
+    ¦   ¦
+    ¦   +---profile
+    ¦   ¦       page.tsx
+    ¦   ¦
+    ¦   +---social-auth
+    ¦   ¦       page.tsx
+    ¦   ¦
+    ¦   L---society
+    ¦       L---onboarding
+    ¦           ¦   page.tsx
+    ¦           ¦
+    ¦           +---create
+    ¦           ¦       page.tsx
+    ¦           ¦
+    ¦           L---join
+    ¦                   page.tsx
+    ¦
+    +---config
+    ¦   L---pages
+    ¦           admin.config.ts
+    ¦           dashboard.config.ts
+    ¦           premium.config.ts
+    ¦           public.config.ts
+    ¦
+    +---features
+    ¦   +---admin
+    ¦   ¦   L---users
+    ¦   ¦           Users.tsx
+    ¦   ¦
+    ¦   +---analytics
+    ¦   ¦   +---api
+    ¦   ¦   +---components
+    ¦   ¦   +---hooks
+    ¦   ¦   +---pages
+    ¦   ¦   +---types
+    ¦   ¦   L---utils
+    ¦   +---auth
+    ¦   ¦   +---api
+    ¦   ¦   +---components
+    ¦   ¦   ¦   ¦   AuthForm.tsx
+    ¦   ¦   ¦   ¦   AuthWrapper.tsx
+    ¦   ¦   ¦   ¦
+    ¦   ¦   ¦   +---social-auth
+    ¦   ¦   ¦   ¦       SocialAuthRedirectPage.tsx
+    ¦   ¦   ¦   ¦       SocialEmailForm.tsx
+    ¦   ¦   ¦   ¦
+    ¦   ¦   ¦   L---ui
+    ¦   ¦   ¦       ¦   AuthInput.tsx
+    ¦   ¦   ¦       ¦   AuthSubmitButton.tsx
+    ¦   ¦   ¦       ¦   AuthToggle.tsx
+    ¦   ¦   ¦       ¦   Button.tsx
+    ¦   ¦   ¦       ¦   Divider.tsx
+    ¦   ¦   ¦       ¦
+    ¦   ¦   ¦       L---socials
+    ¦   ¦   ¦               social-list.data.tsx
+    ¦   ¦   ¦               SocialMediaButtons.tsx
+    ¦   ¦   ¦
+    ¦   ¦   +---hooks
+    ¦   ¦   ¦       useAuthForm.ts
+    ¦   ¦   ¦       useEmailForm.tsx
+    ¦   ¦   ¦
+    ¦   ¦   +---pages
+    ¦   ¦   ¦       AuthPage.tsx
+    ¦   ¦   ¦
+    ¦   ¦   +---services
+    ¦   ¦   ¦       auth-token.service.ts
+    ¦   ¦   ¦       auth.service.ts
+    ¦   ¦   ¦       user.service.ts
+    ¦   ¦   ¦
+    ¦   ¦   +---styles
+    ¦   ¦   ¦       AuthForm.module.scss
+    ¦   ¦   ¦
+    ¦   ¦   +---types
+    ¦   ¦   ¦       auth.types.ts
+    ¦   ¦   ¦       passwordRule.type.ts
+    ¦   ¦   ¦
+    ¦   ¦   L---utils
+    ¦   ¦           get-new-tokens-by-refresh.ts
+    ¦   ¦           get-tokens-from-request.ts
+    ¦   ¦           jwt-verify.ts
+    ¦   ¦
+    ¦   +---dashboard
+    ¦   ¦   +---api
+    ¦   ¦   +---components
+    ¦   ¦   +---hooks
+    ¦   ¦   +---pages
+    ¦   ¦   +---services
+    ¦   ¦   +---types
+    ¦   ¦   L---utils
+    ¦   +---home
+    ¦   ¦   +---components
+    ¦   ¦   ¦       AboutSection.tsx
+    ¦   ¦   ¦       CTASection.tsx
+    ¦   ¦   ¦       FeatureCard.tsx
+    ¦   ¦   ¦       FeaturesSection.tsx
+    ¦   ¦   ¦       Footer.tsx
+    ¦   ¦   ¦       HeroSection.tsx
+    ¦   ¦   ¦       InfoBlock.tsx
+    ¦   ¦   ¦       PlansSection.tsx
+    ¦   ¦   ¦
+    ¦   ¦   +---hooks
+    ¦   ¦   +---services
+    ¦   ¦   L---types
+    ¦   +---houses
+    ¦   ¦   +---api
+    ¦   ¦   +---components
+    ¦   ¦   +---hooks
+    ¦   ¦   +---pages
+    ¦   ¦   +---types
+    ¦   ¦   L---utils
+    ¦   +---layouts
+    ¦   ¦   +---components
+    ¦   ¦   ¦   +---header
+    ¦   ¦   ¦   ¦       Header.tsx
+    ¦   ¦   ¦   ¦       ProfileMenu.tsx
+    ¦   ¦   ¦   ¦
+    ¦   ¦   ¦   L---sidebar
+    ¦   ¦   ¦           Sidebar.tsx
+    ¦   ¦   ¦
+    ¦   ¦   +---hooks
+    ¦   ¦   +---services
+    ¦   ¦   L---types
+    ¦   +---main
+    ¦   ¦   +---api
+    ¦   ¦   +---components
+    ¦   ¦   +---hooks
+    ¦   ¦   +---pages
+    ¦   ¦   +---types
+    ¦   ¦   L---utils
+    ¦   +---manager
+    ¦   ¦   +---components
+    ¦   ¦   ¦       ManagerContent.tsx
+    ¦   ¦   ¦
+    ¦   ¦   +---hooks
+    ¦   ¦   +---services
+    ¦   ¦   L---types
+    ¦   +---meters
+    ¦   ¦   +---api
+    ¦   ¦   +---components
+    ¦   ¦   +---hooks
+    ¦   ¦   +---pages
+    ¦   ¦   +---types
+    ¦   ¦   L---utils
+    ¦   +---payments
+    ¦   ¦   +---api
+    ¦   ¦   +---components
+    ¦   ¦   +---hooks
+    ¦   ¦   +---pages
+    ¦   ¦   +---types
+    ¦   ¦   L---utils
+    ¦   +---plans
+    ¦   ¦   +---api
+    ¦   ¦   +---components
+    ¦   ¦   +---hooks
+    ¦   ¦   +---pages
+    ¦   ¦   +---types
+    ¦   ¦   L---utils
+    ¦   +---premium
+    ¦   ¦   +---components
+    ¦   ¦   ¦       PremiumContent.tsx
+    ¦   ¦   ¦
+    ¦   ¦   +---hooks
+    ¦   ¦   +---services
+    ¦   ¦   L---types
+    ¦   +---profile
+    ¦   ¦   ¦   ProfileInfo.tsx
+    ¦   ¦   ¦   server-variation.tsx
+    ¦   ¦   ¦
+    ¦   ¦   +---api
+    ¦   ¦   +---components
+    ¦   ¦   +---hooks
+    ¦   ¦   ¦       useProfile.ts
+    ¦   ¦   ¦
+    ¦   ¦   +---pages
+    ¦   ¦   +---services
+    ¦   ¦   ¦       profile.service.ts
+    ¦   ¦   ¦
+    ¦   ¦   +---types
+    ¦   ¦   ¦       profile.types.ts
+    ¦   ¦   ¦
+    ¦   ¦   L---utils
+    ¦   L---society
+    ¦       L---onboarding
+    ¦           +---components
+    ¦           ¦       CreateSocietyForm.tsx
+    ¦           ¦       JoinSocietyForm.tsx
+    ¦           ¦
+    ¦           +---hooks
+    ¦           ¦       useCreateSociety.ts
+    ¦           ¦       useJoinSociety.ts
+    ¦           ¦
+    ¦           +---pages
+    ¦           ¦       CreateSocietyPage.tsx
+    ¦           ¦       JoinSocietyPage.tsx
+    ¦           ¦       OnboardingPage.tsx
+    ¦           ¦
+    ¦           +---services
+    ¦           ¦       onboarding.service.ts
+    ¦           ¦
+    ¦           +---types
+    ¦           ¦       society.types.ts
+    ¦           ¦
+    ¦           L---utils
+    +---server-actions
+    ¦   L---middlewares
+    ¦       ¦   protect-admin.middleware.ts
+    ¦       ¦   protect-dashboard.middleware.ts
+    ¦       ¦   protect-login.middleware.ts
+    ¦       ¦   protect-premium.middleware.ts
+    ¦       ¦
+    ¦       L---utils
+    ¦               next-redirect.ts
+    ¦               redirect-to-login-or-404.ts
+    ¦
+    +---services
+    L---shared
+        +---api
+        +---components
+        ¦       Button.tsx
+        ¦       Card.tsx
+        ¦       Error.tsx
+        ¦       Icon.tsx
+        ¦       Input.tsx
+        ¦       Logo.tsx
+        ¦       LogoSvg.tsx
+        ¦       MiniLoader.tsx
+        ¦       Modal.tsx
+        ¦
+        +---config
+        ¦       commonSidebarItems.tsx
+        ¦       managerSidebarItems.tsx
+        ¦
+        +---constants
+        +---hooks
+        ¦       useApiErrorHandler.ts
+        ¦       useBaseMutation.ts
+        ¦
+        +---types
+        ¦       index.ts
+        ¦       user.types.ts
+        ¦
+        +---utils
+        ¦       password.rules.ts
+        ¦       transform-user-to-state.ts
+        ¦
+        L---widgets

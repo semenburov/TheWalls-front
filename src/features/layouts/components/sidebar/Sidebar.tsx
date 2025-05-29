@@ -9,6 +9,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
+import { CgProfile } from 'react-icons/cg'
 
 export const Sidebar: React.FC<{ children?: React.ReactNode }> = ({
 	children,
@@ -103,7 +104,21 @@ export const Sidebar: React.FC<{ children?: React.ReactNode }> = ({
 				{children}
 			</div>
 			<div className='px-8 pb-8 text-xs text-neutral-600'>
-				© {new Date().getFullYear()} TheWalls
+				<Link
+					className={clsx(
+						'flex items-center gap-2 px-3 py-2 rounded-lg transition-colors text-lg',
+						pathname === '/profile'
+							? 'bg-cyan-900/30 text-cyan-300 font-bold'
+							: 'hover:bg-neutral-800/60'
+					)}
+					href={'/profile'}
+				>
+					<CgProfile size={30} />
+					<span>Мій профіль</span>
+				</Link>
+				<div className='px-2 py-2 text-xs text-neutral-600'>
+					© {new Date().getFullYear()} TheWalls
+				</div>
 			</div>
 		</aside>
 	)

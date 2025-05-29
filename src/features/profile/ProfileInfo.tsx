@@ -27,7 +27,7 @@ export function ProfileInfo() {
 		mutationFn: () => userService.logout(), // Виклик API для логауту
 		onSuccess() {
 			startTransition(() => {
-				router.push(PUBLIC_PAGES.AUTH) // Редірект на сторінку тарифів після логауту
+				router.push(PUBLIC_PAGES.LOGIN) // Редірект на сторінку тарифів після логауту
 			})
 			refetch() // Оновити профіль (скинути user)
 			queryClient.setQueryData(['profile'], null) // Очистити кеш профілю
