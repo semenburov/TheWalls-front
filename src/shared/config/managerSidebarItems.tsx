@@ -19,7 +19,7 @@ export const managerSidebarItems = [
 	},
 	{
 		label: 'Обʼєкти',
-		href: '/haus',
+		href: '/object',
 		icon: <MdHome size={20} />,
 		roles: ['user', 'manager'],
 		hidden: false, // Показуємо завжди, якщо користувач має роль

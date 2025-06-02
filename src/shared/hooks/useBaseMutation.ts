@@ -1,3 +1,4 @@
+'use client'
 import { useApiErrorHandler } from '@/shared/hooks/useApiErrorHandler'
 import {
 	useMutation,
